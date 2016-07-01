@@ -1,0 +1,86 @@
+# specify customer and environment
+variable "customer" {
+    default = "dirict"
+}
+
+variable "environment" {
+    default = "rely-test"
+}
+
+# specify stack user
+variable "user_name" {}
+
+# set password as 'export TF_VAR_password=<password>'
+variable "password" {}
+
+# generate your own key
+variable "ssh_key_file" {
+    default = "~/.ssh/id_rsa.terraform"
+}
+
+############### adjust as needed ###############
+variable "db_vol_gb" {
+    default = 10
+}
+
+variable "nfs_vol_gb" {
+    default = 10
+}
+
+variable "es_vol_gb" {
+    default = 10
+}
+
+
+############### leave unchanged for naturalis openstack ###################
+variable "tenant_name" {
+    default = "rely"
+}
+
+variable "auth_url" {
+    default = "https://185.12.135.5:5000/v2.0"
+}
+
+variable "region" {
+    default = "RegionOne"
+}
+
+variable "external_gateway" {
+    default = "8ef79390-4ce1-4001-89ce-6da0ae5bff31"
+}
+
+variable "pool" {
+    default = "external"
+}
+
+variable "image_deb" {
+    default = "debian-7-amd64"
+}
+
+variable "image_ub" {
+    default = "Ubuntu 14.04 LTS"
+}
+
+variable "image_win" {
+    default = "Windows Server 2012 R2 Std Eval"
+}
+
+variable "flavor_appl" {
+    default = "ha_localdisk.4c.16r.60h"
+}
+
+variable "flavor_db" {
+    default = "ha_localdisk.4c.16r.60h"
+}
+
+variable "flavor_mon" {
+    default = "ha_localdisk.2c.4r.60h"
+}
+
+variable "flavor_win" {
+    default = "ha_localdisk.2c.4r.60h"
+}
+
+variable "flavor_lb" {
+    default = "ha_localdisk.1c.1r.20h"
+}
