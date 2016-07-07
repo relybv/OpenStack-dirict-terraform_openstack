@@ -7,6 +7,7 @@ provider "openstack" {
   auth_url  = "${var.auth_url}"
 }
 
+
 # Configure the AWS Provider
 provider "aws" {
     access_key = "${var.aws_access_key}"

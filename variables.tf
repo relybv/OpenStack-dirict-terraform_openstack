@@ -3,6 +3,7 @@ variable "customer" {
     default = "dirict"
 }
 
+
 variable "environment" {
     default = "dirict-acc"
 }
