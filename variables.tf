@@ -4,7 +4,7 @@ variable "customer" {
 }
 
 variable "environment" {
-    default = "rely-test"
+    default = "dirict-acc"
 }
 
 # specify external domain base
@@ -14,7 +14,7 @@ variable "domain_base" {
 
 # specify A record name for external load balancer
 variable "ext_lb_name" {
-    default = "www"
+    default = "testlb"
 }
 
 # specify AWS credentials as 'export TF_VAR_aws_access_key=<accesskey>; export TF_VAR_aws_secret_key=<secretkey>'
@@ -96,5 +96,8 @@ variable "flavor_win" {
 }
 
 variable "flavor_lb" {
+    default = "ha_localdisk.1c.1r.20h"
+}
+variable "flavor_jump" {
     default = "ha_localdisk.1c.1r.20h"
 }

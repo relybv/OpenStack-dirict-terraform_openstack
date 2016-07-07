@@ -34,7 +34,7 @@ resource "template_file" "init_appl" {
         nfs_address = "${openstack_compute_instance_v2.db1.network.0.fixed_ip_v4}"
         db_address = "${openstack_compute_instance_v2.db1.network.0.fixed_ip_v4}"
         win_address = "${openstack_compute_instance_v2.win1.network.0.fixed_ip_v4}"
-        ext_lb_fqdn = "${concat(var.ext_lb_name,".",var.environment,".",var.customer,".",var.domain_base)}"
+        ext_lb_fqdn = "${concat(var.ext_lb_name,".",var.environment,".",var.customer,".",var.domain_base)}"        
     }
 }
 
@@ -128,6 +128,30 @@ resource "openstack_compute_floatingip_v2" "float2" {
   pool = "${var.pool}"
 }
 
+resource "openstack_compute_floatingip_v2" "float3" {
+  depends_on = ["openstack_networking_router_interface_v2.backend"]
+  region = "${var.region}"
+  pool = "${var.pool}"
+}
+
+resource "openstack_compute_floatingip_v2" "float4" {
+  depends_on = ["openstack_networking_router_interface_v2.backend"]
+  region = "${var.region}"
+  pool = "${var.pool}"
+}
+
+resource "openstack_compute_floatingip_v2" "float5" {
+  depends_on = ["openstack_networking_router_interface_v2.backend"]
+  region = "${var.region}"
+  pool = "${var.pool}"
+}
+
+resource "openstack_compute_floatingip_v2" "float6" {
+  depends_on = ["openstack_networking_router_interface_v2.backend"]
+  region = "${var.region}"
+  pool = "${var.pool}"
+}
+
 resource "openstack_compute_secgroup_v2" "terraform" {
   name = "terraform_${var.customer}_${var.environment}"
   region = "${var.region}"
@@ -193,21 +217,6 @@ resource "openstack_compute_instance_v2" "lb1" {
   }
 }
 
-resource "openstack_compute_instance_v2" "jump" {
-  name = "jumphost"
-  region = "${var.region}"
-  image_name = "${var.image_ub}"
-  flavor_name = "${var.flavor_jump}"
-  key_pair = "${openstack_compute_keypair_v2.terraform.name}"
-  security_groups = [ "${openstack_compute_secgroup_v2.terraform.name}" ]
-  floating_ip = "${openstack_compute_floatingip_v2.float2.address}"
-  user_data = "${template_file.init_lb.rendered}"
-  network {
-    uuid = "${openstack_networking_network_v2.jump.id}"
-    fixed_ip_v4 = "172.16.10.20"
-  }
-}
-
 resource "openstack_compute_instance_v2" "appl1" {
   name = "appl1"
   region = "${var.region}"
@@ -215,6 +224,7 @@ resource "openstack_compute_instance_v2" "appl1" {
   flavor_name = "${var.flavor_appl}"
   key_pair = "${openstack_compute_keypair_v2.terraform.name}"
   security_groups = [ "${openstack_compute_secgroup_v2.terraform.name}" ]
+  floating_ip = "${openstack_compute_floatingip_v2.float2.address}"
   user_data = "${template_file.init_appl.rendered}"
   network {
     uuid = "${openstack_networking_network_v2.frontend.id}"
@@ -232,6 +242,7 @@ resource "openstack_compute_instance_v2" "appl2" {
   flavor_name = "${var.flavor_appl}"
   key_pair = "${openstack_compute_keypair_v2.terraform.name}"
   security_groups = [ "${openstack_compute_secgroup_v2.terraform.name}" ]
+  floating_ip = "${openstack_compute_floatingip_v2.float3.address}"
   user_data = "${template_file.init_appl.rendered}"
   network {
     uuid = "${openstack_networking_network_v2.frontend.id}"
@@ -249,6 +260,7 @@ resource "openstack_compute_instance_v2" "db1" {
   flavor_name = "${var.flavor_db}"
   key_pair = "${openstack_compute_keypair_v2.terraform.name}"
   security_groups = [ "${openstack_compute_secgroup_v2.terraform.name}" ]
+  floating_ip = "${openstack_compute_floatingip_v2.float4.address}"
   user_data = "${template_file.init_db.rendered}"
   network {
     uuid = "${openstack_networking_network_v2.backend.id}"
@@ -263,3 +275,36 @@ resource "openstack_compute_instance_v2" "db1" {
     device = "/dev/vdc"
   }
 }
+
+resource "openstack_compute_instance_v2" "monitor1" {
+  name = "monitor1"
+  region = "${var.region}"
+  image_name = "${var.image_ub}"
+  flavor_name = "${var.flavor_mon}"
+  key_pair = "${openstack_compute_keypair_v2.terraform.name}"
+  security_groups = [ "${openstack_compute_secgroup_v2.terraform.name}" ]
+  floating_ip = "${openstack_compute_floatingip_v2.float5.address}"
+  user_data = "${template_file.init_monitor.rendered}"
+  network {
+    uuid = "${openstack_networking_network_v2.frontend.id}"
+    fixed_ip_v4 = "172.16.10.201"
+  }
+  volume {
+    volume_id = "${openstack_blockstorage_volume_v1.es.id}"
+    device = "/dev/vdb"
+  }
+}
+
+resource "openstack_compute_instance_v2" "win1" {
+  name = "win1"
+  region = "${var.region}"
+  image_name = "${var.image_win}"
+  flavor_name = "${var.flavor_win}"
+  key_pair = "${openstack_compute_keypair_v2.terraform.name}"
+  security_groups = [ "${openstack_compute_secgroup_v2.terraform.name}" ]
+  floating_ip = "${openstack_compute_floatingip_v2.float6.address}"
+  user_data = "${template_file.init_win.rendered}"
+  network {
+    uuid = "${openstack_networking_network_v2.backend.id}"
+  }
+ }
