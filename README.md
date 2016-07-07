@@ -2,7 +2,7 @@
 
 2 set password as 'export TF_VAR_password=<password>'
 
-3 login to horizon web interface and save ca-bundle/stack_naturalis_nl.ca-bundle.crt from object-store to /usr/local/share/ca-certificates/stack_naturalis_nl.ca-bundle.crt
+3 login to horizon web interface and save ca-bundle/stack.ca-bundle.crt from object-store to /usr/local/share/ca-certificates/stack.ca-bundle.crt
 
 4 run 'sudo update-ca-certificates'
 

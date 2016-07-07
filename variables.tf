@@ -98,6 +98,6 @@ variable "flavor_win" {
 variable "flavor_lb" {
     default = "ha_localdisk.1c.1r.20h"
 }
-variable "flavor_jump" {
+variable "flavor_jump  " {
     default = "ha_localdisk.1c.1r.20h"
 }
