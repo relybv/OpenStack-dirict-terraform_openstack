@@ -1,4 +1,4 @@
-1 set user as 'export TF_VAR_user_name=<password>'
+1 set user as 'export TF_VAR_user_name=<username>'
 
 2 set password as 'export TF_VAR_password=<password>'
 

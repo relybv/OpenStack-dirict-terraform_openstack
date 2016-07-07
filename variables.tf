@@ -19,8 +19,8 @@ variable "ext_lb_name" {
 }
 
 # specify AWS credentials as 'export TF_VAR_aws_access_key=<accesskey>; export TF_VAR_aws_secret_key=<secretkey>'
-variable "aws_access_key" {}
-variable "aws_secret_key" {}
+#variable "aws_access_key" {}
+#variable "aws_secret_key" {}
 
 # specify stack user
 variable "user_name" {}
