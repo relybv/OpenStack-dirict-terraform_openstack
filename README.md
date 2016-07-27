@@ -1,13 +1,10 @@
-1 set user as 'export TF_VAR_user_name=<username>'
+Main terraform deploy for the DirICT environment.
 
-2 set password as 'export TF_VAR_password=<password>'
+Make sure you have defined in the .bash_profile:
+- TF_VAR_password
+- TF_VAR_user_name
+- TF_VAR_aws_access_key
+- TF_VAR_aws_secret_key
 
-3 login to horizon web interface and save ca-bundle/stack.ca-bundle.crt from object-store to /usr/local/share/ca-certificates/stack.ca-bundle.crt
-
-4 run 'sudo update-ca-certificates'
-
-5 generate your own ssh key and save the public key as "~/.ssh/id_rsa.terraform"
-
-6 install terraform
-
-7 run terraform plan, etc
+Swift Terraform setting for remote state backend set to AWS. 
+Terraform.tfstate file to be found on Amazon S3.
