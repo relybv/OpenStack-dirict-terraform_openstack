@@ -3,7 +3,6 @@ variable "customer" {
     default = "dirict"
 }
 
-
 variable "environment" {
     default = "dirict-acc"
 }
@@ -15,12 +14,12 @@ variable "domain_base" {
 
 # specify A record name for external load balancer
 variable "ext_lb_name" {
-    default = "testlb"
+    default = "acc"
 }
 
 # specify AWS credentials as 'export TF_VAR_aws_access_key=<accesskey>; export TF_VAR_aws_secret_key=<secretkey>'
-#variable "aws_access_key" {}
-#variable "aws_secret_key" {}
+variable "aws_access_key" {}
+variable "aws_secret_key" {}
 
 # specify stack user
 variable "user_name" {}
@@ -49,11 +48,11 @@ variable "es_vol_gb" {
 
 ############### leave unchanged for naturalis openstack ###################
 variable "tenant_name" {
-    default = "rely"
+    default = "dirict-acc"
 }
 
 variable "auth_url" {
-    default = "https://185.12.135.5:5000/v2.0"
+    default = "https://access.openstack.rely.nl:5000/v2.0"
 }
 
 variable "region" {
@@ -61,7 +60,7 @@ variable "region" {
 }
 
 variable "external_gateway" {
-    default = "8ef79390-4ce1-4001-89ce-6da0ae5bff31"
+    default = "2613fe91-7fa1-4033-8fd3-678e7e9e15e7"
 }
 
 variable "pool" {
@@ -81,11 +80,11 @@ variable "image_win" {
 }
 
 variable "flavor_appl" {
-    default = "ha_localdisk.4c.16r.60h"
+    default = "ha_localdisk.1c.1r.20h"
 }
 
 variable "flavor_db" {
-    default = "ha_localdisk.4c.16r.60h"
+    default = "ha_localdisk.1c.1r.20h"
 }
 
 variable "flavor_mon" {
@@ -99,6 +98,7 @@ variable "flavor_win" {
 variable "flavor_lb" {
     default = "ha_localdisk.1c.1r.20h"
 }
-variable "flavor_jump  " {
+
+variable "flavor_jump" {
     default = "ha_localdisk.1c.1r.20h"
 }
