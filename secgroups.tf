@@ -42,6 +42,7 @@ resource "openstack_compute_secgroup_v2" "frontnet" {
       from_port = 1
       to_port = 65535
       ip_protocol = "tcp"
+      cidr = "${var.secgroup_jump_cidr}"
   }
   rule {
     ip_protocol = "icmp"

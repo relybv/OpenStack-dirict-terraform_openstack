@@ -73,8 +73,20 @@ variable "lb1_hostname" {
 variable "db1_hostname" {
     default = "db1"
 }
+variable "monitor1_hostname" {
+    default = "db1"
+}
+variable "jump1_hostname" {
+    default = "jumphost"
+}
+variable "win1_hostname" {
+    default = "win1"
+}
 ############### Fixed IP addresses ###############
 
+variable "main_net" {
+    default = "172.18"
+}
 variable "jump_ip_address" {
     default = "172.18.30.20"
 }
@@ -100,23 +112,22 @@ variable "appl3_ip_address" {
     default = "172.18.10.103"
 }
 variable "appl4_ip_address" {
-    default = "172.18.10.104"
+    default = "$172.18.10.104"
 }
 variable "win1_ip_address" {
     default = "172.18.20.50"
 }
 
 ############### security groups ###############
-variable "secgroup_jump_cidr" {
-    default = "172.18.30.0/24"
-}
 variable "secgroup_front_cidr" {
     default = "172.18.10.0/24"
 }
 variable "secgroup_back_cidr" {
     default = "172.18.20.0/24"
 }
-
+variable "secgroup_jump_cidr" {
+    default = "172.18.30.0/24"
+}
 ############### adjust as needed ###############
 variable "db_vol_gb" {
     default = 10

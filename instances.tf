@@ -4,7 +4,7 @@ resource "openstack_compute_servergroup_v2" "appl" {
 }
 
 resource "openstack_compute_instance_v2" "lb1" {
-  name = "${var.lb1_hostname}"
+  name = "${var.customer}-${var.environment}-${var.lb1_hostname}"
   region = "${var.region}"
   image_name = "${var.image_ub}"
   flavor_name = "${var.flavor_lb}"
@@ -19,7 +19,7 @@ resource "openstack_compute_instance_v2" "lb1" {
 }
 
 resource "openstack_compute_instance_v2" "appl1" {
-  name = "${var.appl1_hostname}"
+  name = "${var.customer}-${var.environment}-${var.appl1_hostname}"
   region = "${var.region}"
   image_name = "${var.image_deb}"
   flavor_name = "${var.flavor_appl}"
@@ -33,7 +33,7 @@ resource "openstack_compute_instance_v2" "appl1" {
 }
 
 resource "openstack_compute_instance_v2" "appl2" {
-  name = "${var.appl2_hostname}"
+  name = "${var.customer}-${var.environment}-${var.appl2_hostname}"
   region = "${var.region}"
   image_name = "${var.image_deb}"
   flavor_name = "${var.flavor_appl}"
@@ -47,7 +47,7 @@ resource "openstack_compute_instance_v2" "appl2" {
 }
 
 resource "openstack_compute_instance_v2" "db1" {
-  name = "${var.db1_hostname}"
+  name = "${var.customer}-${var.environment}-${var.db1_hostname}"
   region = "${var.region}"
   image_name = "${var.image_deb}"
   flavor_name = "${var.flavor_db}"
@@ -69,7 +69,7 @@ resource "openstack_compute_instance_v2" "db1" {
 }
 
 resource "openstack_compute_instance_v2" "monitor1" {
-  name = "monitor1"
+  name = "${var.customer}-${var.environment}-${var.monitor1_hostname}"
   region = "${var.region}"
   image_name = "${var.image_ub}"
   flavor_name = "${var.flavor_mon}"
@@ -87,7 +87,7 @@ resource "openstack_compute_instance_v2" "monitor1" {
 }
 
 resource "openstack_compute_instance_v2" "jump" {
-  name = "jumphost"
+  name = "${var.customer}-${var.environment}-${var.jump1_hostname}"
   region = "${var.region}"
   image_name = "${var.image_ub}"
   flavor_name = "${var.flavor_jump}"
@@ -102,7 +102,7 @@ resource "openstack_compute_instance_v2" "jump" {
 }
 
 resource "openstack_compute_instance_v2" "win1" {
-  name = "win1"
+  name = "${var.customer}-${var.environment}-${var.win1_hostname}"
   region = "${var.region}"
   image_name = "${var.image_win}"
   flavor_name = "${var.flavor_win}"
