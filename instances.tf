@@ -4,12 +4,12 @@ resource "openstack_compute_servergroup_v2" "appl" {
 }
 
 resource "openstack_compute_instance_v2" "lb1" {
-  name = "lb1"
+  name = "${var.lb1_hostname}"
   region = "${var.region}"
   image_name = "${var.image_ub}"
   flavor_name = "${var.flavor_lb}"
   key_pair = "${openstack_compute_keypair_v2.terraform.name}"
-  security_groups = [ "${openstack_compute_secgroup_v2.terraform.name}" ]
+  security_groups = [ "${openstack_compute_secgroup_v2.lb.name}" ]
   floating_ip = "${openstack_compute_floatingip_v2.lb.address}"
   user_data = "${template_file.init_lb.rendered}"
   network {
@@ -19,12 +19,12 @@ resource "openstack_compute_instance_v2" "lb1" {
 }
 
 resource "openstack_compute_instance_v2" "appl1" {
-  name = "${var.appl1_name}"
+  name = "${var.appl1_hostname}"
   region = "${var.region}"
   image_name = "${var.image_deb}"
   flavor_name = "${var.flavor_appl}"
   key_pair = "${openstack_compute_keypair_v2.terraform.name}"
-  security_groups = [ "${openstack_compute_secgroup_v2.terraform.name}" ]
+  security_groups = [ "${openstack_compute_secgroup_v2.frontnet.name}" ]
   user_data = "${template_file.init_appl.rendered}"
   network {
     uuid = "${openstack_networking_network_v2.frontend.id}"
@@ -33,12 +33,12 @@ resource "openstack_compute_instance_v2" "appl1" {
 }
 
 resource "openstack_compute_instance_v2" "appl2" {
-  name = "${var.appl2_name}"
+  name = "${var.appl2_hostname}"
   region = "${var.region}"
   image_name = "${var.image_deb}"
   flavor_name = "${var.flavor_appl}"
   key_pair = "${openstack_compute_keypair_v2.terraform.name}"
-  security_groups = [ "${openstack_compute_secgroup_v2.terraform.name}" ]
+  security_groups = [ "${openstack_compute_secgroup_v2.frontnet.name}" ]
   user_data = "${template_file.init_appl.rendered}"
   network {
     uuid = "${openstack_networking_network_v2.frontend.id}"
@@ -47,12 +47,12 @@ resource "openstack_compute_instance_v2" "appl2" {
 }
 
 resource "openstack_compute_instance_v2" "db1" {
-  name = "db1"
+  name = "${var.db1_hostname}"
   region = "${var.region}"
   image_name = "${var.image_deb}"
   flavor_name = "${var.flavor_db}"
   key_pair = "${openstack_compute_keypair_v2.terraform.name}"
-  security_groups = [ "${openstack_compute_secgroup_v2.terraform.name}" ]
+  security_groups = [ "${openstack_compute_secgroup_v2.backnet.name}" ]
   user_data = "${template_file.init_db.rendered}"
   network {
     uuid = "${openstack_networking_network_v2.backend.id}"
@@ -74,7 +74,7 @@ resource "openstack_compute_instance_v2" "monitor1" {
   image_name = "${var.image_ub}"
   flavor_name = "${var.flavor_mon}"
   key_pair = "${openstack_compute_keypair_v2.terraform.name}"
-  security_groups = [ "${openstack_compute_secgroup_v2.terraform.name}" ]
+  security_groups = [ "${openstack_compute_secgroup_v2.frontnet.name}" ]
   user_data = "${template_file.init_monitor.rendered}"
   network {
     uuid = "${openstack_networking_network_v2.frontend.id}"
@@ -92,7 +92,7 @@ resource "openstack_compute_instance_v2" "jump" {
   image_name = "${var.image_ub}"
   flavor_name = "${var.flavor_jump}"
   key_pair = "${openstack_compute_keypair_v2.terraform.name}"
-  security_groups = [ "${openstack_compute_secgroup_v2.terraform.name}" ]
+  security_groups = [ "${openstack_compute_secgroup_v2.jump.name}" ]
   floating_ip = "${openstack_compute_floatingip_v2.jump.address}"
   user_data = "${template_file.init_jump.rendered}"
   network {
@@ -107,7 +107,7 @@ resource "openstack_compute_instance_v2" "win1" {
   image_name = "${var.image_win}"
   flavor_name = "${var.flavor_win}"
   key_pair = "${openstack_compute_keypair_v2.terraform.name}"
-  security_groups = [ "${openstack_compute_secgroup_v2.terraform.name}" ]
+  security_groups = [ "${openstack_compute_secgroup_v2.backnet.name}" ]
   user_data = "${template_file.init_win.rendered}"
   network {
     uuid = "${openstack_networking_network_v2.backend.id}"

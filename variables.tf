@@ -4,7 +4,7 @@ variable "customer" {
 }
 
 variable "environment" {
-    default = "dirict-acc"
+    default = "acc"
 }
 
 # specify external domain base
@@ -54,20 +54,25 @@ variable "monitor_storage" {
     default = "/dev/vdb"
 }
 
-############### Storage device definitions ###############
-variable "appl1_name" {
+############### Hostnames ###############
+variable "appl1_hostname" {
     default = "appl1"
 }
-variable "appl2_name" {
+variable "appl2_hostname" {
     default = "appl2"
 }
-variable "appl3_name" {
+variable "appl3_hostname" {
     default = "appl3"
 }
-variable "appl4_name" {
+variable "appl4_hostname" {
     default = "appl4"
 }
-
+variable "lb1_hostname" {
+    default = "lb1"
+}
+variable "db1_hostname" {
+    default = "db1"
+}
 ############### Fixed IP addresses ###############
 
 variable "jump_ip_address" {

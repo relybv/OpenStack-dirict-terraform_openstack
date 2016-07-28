@@ -2,11 +2,15 @@
 resource "template_file" "init_lb" {
     template = "${file("init_lb.tpl")}"
     vars {
-        appl1_address = "${openstack_compute_instance_v2.appl1.network.0.fixed_ip_v4}"
-        appl2_address = "${openstack_compute_instance_v2.appl2.network.0.fixed_ip_v4}"
-        appl1_name = "${openstack_compute_instance_v2.appl1.name}"
-        appl2_name = "${openstack_compute_instance_v2.appl2.name}"
-        monitor_address = "${openstack_compute_instance_v2.monitor1.network.0.fixed_ip_v4}"
+        appl1_address = "${var.appl1_ip_address}"
+        appl2_address = "${var.appl2_ip_address}"
+        appl3_address = "${var.appl3_ip_address}"
+        appl4_address = "${var.appl4_ip_address}"
+        appl1_name = "${var.appl1_hostname}"
+        appl2_name = "${var.appl2_hostname}"
+        appl3_name = "${var.appl3_hostname}"
+        appl4_name = "${var.appl4_hostname}"
+        monitor_address = "${var.monitor1_ip_address}"
     }
 }
 
