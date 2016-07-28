@@ -54,6 +54,20 @@ variable "monitor_storage" {
     default = "/dev/vdb"
 }
 
+############### Storage device definitions ###############
+variable "appl1_name" {
+    default = "appl1"
+}
+variable "appl2_name" {
+    default = "appl2"
+}
+variable "appl3_name" {
+    default = "appl3"
+}
+variable "appl4_name" {
+    default = "appl4"
+}
+
 ############### Fixed IP addresses ###############
 
 variable "jump_ip_address" {

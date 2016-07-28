@@ -1,8 +1,4 @@
 #!/bin/bash
-echo "Start of boot script"
-export FACTER_monitor_address="${monitor_address}"
-echo "Rsyslog server is: $FACTER_monitor_address"
-
 echo "Create hiera directories"
 mkdir -p /etc/puppetlabs/puppet
 mkdir -p /etc/puppetlabs/code/environments/production/hieradata

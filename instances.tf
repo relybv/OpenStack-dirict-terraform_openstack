@@ -19,7 +19,7 @@ resource "openstack_compute_instance_v2" "lb1" {
 }
 
 resource "openstack_compute_instance_v2" "appl1" {
-  name = "appl1"
+  name = "${var.appl1_name}"
   region = "${var.region}"
   image_name = "${var.image_deb}"
   flavor_name = "${var.flavor_appl}"
@@ -33,7 +33,7 @@ resource "openstack_compute_instance_v2" "appl1" {
 }
 
 resource "openstack_compute_instance_v2" "appl2" {
-  name = "appl2"
+  name = "${var.appl2_name}"
   region = "${var.region}"
   image_name = "${var.image_deb}"
   flavor_name = "${var.flavor_appl}"
