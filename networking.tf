@@ -26,7 +26,7 @@ resource "openstack_networking_subnet_v2" "frontend" {
   name = "frontend_${var.customer}_${var.environment}"
   region = "${var.region}"
   network_id = "${openstack_networking_network_v2.frontend.id}"
-  cidr = "172.16.10.0/24"
+  cidr = "${var.secgroup_front_cidr}"
   ip_version = 4
   enable_dhcp = "true"
   dns_nameservers = ["8.8.8.8","8.8.4.4"]
@@ -36,7 +36,7 @@ resource "openstack_networking_subnet_v2" "backend" {
   name = "backend_${var.customer}_${var.environment}"
   region = "${var.region}"
   network_id = "${openstack_networking_network_v2.backend.id}"
-  cidr = "172.16.20.0/24"
+  cidr = "${var.secgroup_back_cidr}"
   ip_version = 4
   enable_dhcp = "true"
   dns_nameservers = ["8.8.8.8","8.8.4.4"]
@@ -46,7 +46,7 @@ resource "openstack_networking_subnet_v2" "jump" {
   name = "jump_${var.customer}_${var.environment}"
   region = "${var.region}"
   network_id = "${openstack_networking_network_v2.jump.id}"
-  cidr = "172.16.30.0/24"
+  cidr = "${var.secgroup_jump_cidr}"
   ip_version = 4
   enable_dhcp = "true"
   dns_nameservers = ["8.8.8.8","8.8.4.4"]

@@ -30,19 +30,18 @@ resource "openstack_compute_secgroup_v2" "frontnet" {
     from_port = 1
     to_port = 65535
     ip_protocol = "tcp"
-    cidr = "172.16.10.0/24"
+    cidr = "${var.secgroup_front_cidr}"
   }
   rule {
     from_port = 1
     to_port = 65535
     ip_protocol = "tcp"
-    cidr = "172.16.20.0/24"
+    cidr = "${var.secgroup_back_cidr}"
   }
   rule {
       from_port = 1
       to_port = 65535
       ip_protocol = "tcp"
-      cidr = "172.16.30.0/24"
   }
   rule {
     ip_protocol = "icmp"
@@ -60,19 +59,19 @@ resource "openstack_compute_secgroup_v2" "backnet" {
     from_port = 1
     to_port = 65535
     ip_protocol = "tcp"
-    cidr = "172.16.10.0/24"
+    cidr = "${var.secgroup_front_cidr}"
   }
   rule {
     from_port = 1
     to_port = 65535
     ip_protocol = "tcp"
-    cidr = "172.16.20.0/24"
+    cidr = "${var.secgroup_back_cidr}"
   }
   rule {
       from_port = 1
       to_port = 65535
       ip_protocol = "tcp"
-      cidr = "172.16.30.0/24"
+      cidr = "${var.secgroup_jump_cidr}"
   }
   rule {
     ip_protocol = "icmp"
@@ -109,13 +108,13 @@ resource "openstack_compute_secgroup_v2" "lb" {
     from_port = 1
     to_port = 65535
     ip_protocol = "tcp"
-    cidr = "172.16.10.0/24"
+    cidr = "${var.secgroup_front_cidr}"
   }
   rule {
       from_port = 1
       to_port = 65535
       ip_protocol = "tcp"
-      cidr = "172.16.20.0/24"
+      cidr = "${var.secgroup_back_cidr}"
   }
   rule {
     ip_protocol = "icmp"
@@ -140,13 +139,13 @@ resource "openstack_compute_secgroup_v2" "jump" {
     from_port = 1
     to_port = 65535
     ip_protocol = "tcp"
-    cidr = "172.16.10.0/24"
+    cidr = "${var.secgroup_front_cidr}"
   }
   rule {
       from_port = 1
       to_port = 65535
       ip_protocol = "tcp"
-      cidr = "172.16.20.0/24"
+      cidr = "${var.secgroup_back_cidr}"
   }
   rule {
       from_port = 1

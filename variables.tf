@@ -14,7 +14,7 @@ variable "domain_base" {
 
 # specify A record name for external load balancer
 variable "ext_lb_name" {
-    default = "acc"
+    default = "www"
 }
 
 # specify AWS credentials as 'export TF_VAR_aws_access_key=<accesskey>; export TF_VAR_aws_secret_key=<secretkey>'
@@ -76,34 +76,45 @@ variable "db1_hostname" {
 ############### Fixed IP addresses ###############
 
 variable "jump_ip_address" {
-    default = "172.16.30.20"
+    default = "172.18.30.20"
 }
 variable "monitor1_ip_address" {
-    default = "172.16.10.201"
+    default = "172.18.10.201"
 }
 variable "lb1_ip_address" {
-    default = "172.16.10.51"
+    default = "172.18.10.51"
 }
 variable "db1_ip_address" {
-    default = "172.16.20.101"
+    default = "172.18.20.101"
 }
 variable "db2_ip_address" {
-    default = "172.16.20.102"
+    default = "172.18.20.102"
 }
 variable "appl1_ip_address" {
-    default = "172.16.10.101"
+    default = "172.18.10.101"
 }
 variable "appl2_ip_address" {
-    default = "172.16.10.102"
+    default = "172.18.10.102"
 }
 variable "appl3_ip_address" {
-    default = "172.16.10.103"
+    default = "172.18.10.103"
 }
 variable "appl4_ip_address" {
-    default = "172.16.10.104"
+    default = "172.18.10.104"
 }
 variable "win1_ip_address" {
-    default = "172.16.20.50"
+    default = "172.18.20.50"
+}
+
+############### security groups ###############
+variable "secgroup_jump_cidr" {
+    default = "172.18.30.0/24"
+}
+variable "secgroup_front_cidr" {
+    default = "172.18.10.0/24"
+}
+variable "secgroup_back_cidr" {
+    default = "172.18.20.0/24"
 }
 
 ############### adjust as needed ###############

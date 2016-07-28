@@ -1,7 +1,7 @@
 #!/bin/bash
 echo "Start of boot script"
-export FACTER_member_ips="${var.appl1_ip_address},${var.appl2_ip_address},${var.appl3_ip_address},${var.appl4_ip_address}"
-export FACTER_member_names="${var.appl1_name},${var.appl2_name},${var.appl3_name},${var.appl4_name}"
+export FACTER_member_ips="${appl1_address},${appl2_address},${appl3_address},${appl4_address}"
+export FACTER_member_names="${appl1_name},${appl2_name},${appl3_name},${appl4_name}"
 echo "Members are: $FACTER_member_names, $FACTER_member_ips"
 
 mkdir -p /etc/puppetlabs/puppet

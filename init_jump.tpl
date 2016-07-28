@@ -24,7 +24,7 @@ cat <<'EOF' >> /etc/puppetlabs/puppet/hiera.yaml
 EOF
 
 echo "Write customer hieradata"
-echo '${file("customer.json")}' > "/etc/puppetlabs/code/environments/production/hieradata/customer.json"
+echo '${file("jump.json")}' > "/etc/puppetlabs/code/environments/production/hieradata/customer.json"
 
 echo "Bootstrap puppet and apply role"
 wget https://raw.githubusercontent.com/relybv/dirict-role_jump/master/files/bootme.sh && bash bootme.sh
