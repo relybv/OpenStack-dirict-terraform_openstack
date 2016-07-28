@@ -32,9 +32,9 @@ provider "aws" {
 resource "terraform_remote_state" "aws" {
     backend = "s3"
     config {
-        bucket = "terraform-state-backend"
-        key = "/terraform.tfstate"
-        region = "eu-central-1"
+        bucket = "${var.swift_bucket_name}"
+        key = "${var.swift_key}"
+        region = "${var.swift_region}"
         access_key = "${var.aws_access_key}"
         secret_key = "${var.aws_secret_key}"
     }

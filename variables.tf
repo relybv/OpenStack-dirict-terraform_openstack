@@ -32,6 +32,61 @@ variable "ssh_key_file" {
     default = "~/.ssh/id_rsa.terraform"
 }
 
+# Variables for terraform remote state
+variable "swift_bucket_name" {
+    default = "terraform-state-backend"
+}
+variable "swift_key" {
+    default = "/terraform.tfstate"
+}
+variable "swift_region" {
+    default = "eu-central-1"
+}
+
+############### Storage device definitions ###############
+variable "db_storage" {
+    default = "/dev/vdb"
+}
+variable "nfs_storage" {
+    default = "/dev/vdc"
+}
+variable "monitor_storage" {
+    default = "/dev/vdb"
+}
+
+############### Fixed IP addresses ###############
+
+variable "jump_ip_address" {
+    default = "172.16.30.20"
+}
+variable "monitor1_ip_address" {
+    default = "172.16.10.201"
+}
+variable "lb1_ip_address" {
+    default = "172.16.10.51"
+}
+variable "db1_ip_address" {
+    default = "172.16.20.101"
+}
+variable "db2_ip_address" {
+    default = "172.16.20.102"
+}
+variable "appl1_ip_address" {
+    default = "172.16.10.101"
+}
+variable "appl2_ip_address" {
+    default = "172.16.10.102"
+}
+variable "appl3_ip_address" {
+    default = "172.16.10.103"
+}
+variable "appl4_ip_address" {
+    default = "172.16.10.104"
+}
+variable "win1_ip_address" {
+    default = "172.16.20.50"
+}
+
 ############### adjust as needed ###############
 variable "db_vol_gb" {
     default = 10

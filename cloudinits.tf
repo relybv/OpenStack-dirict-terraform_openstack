@@ -40,3 +40,11 @@ resource "template_file" "init_jump" {
     vars {
     }
 }
+
+# Template for win cloud-init powershell
+resource "template_file" "init_win" {
+    template = "${file("init_win.tpl")}"
+    vars {
+        monitor_address = "${openstack_compute_instance_v2.monitor1.network.0.fixed_ip_v4}"
+    }
+}
