@@ -29,7 +29,7 @@ resource "template_file" "init_appl" {
 resource "template_file" "init_db" {
     template = "${file("init_db.tpl")}"
     vars {
-        monitor_address = "${openstack_compute_instance_v2.monitor1.network.0.fixed_ip_v4}"
+        monitor_address = "${var.monitor1_ip_address}"
     }
 }
 

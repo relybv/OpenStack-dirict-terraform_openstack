@@ -25,7 +25,7 @@ resource "openstack_compute_keypair_v2" "terraform" {
 provider "aws" {
     access_key = "${var.aws_access_key}"
     secret_key = "${var.aws_secret_key}"
-    region = "us-west-1"
+    region = "eu-central-1"
 }
 
 # Terraform.state stored on AWS S3

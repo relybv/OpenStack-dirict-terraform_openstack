@@ -10,9 +10,9 @@ output "customer fqdn" {
     value = "${concat(var.ext_lb_name,".",var.environment,".",var.customer,".",var.domain_base)}"
 }
 
-output "customer nameservers" {
-    value = "${aws_route53_zone.environment.name_servers.0}, ${aws_route53_zone.environment.name_servers.1}, ${aws_route53_zone.environment.name_servers.2}, ${aws_route53_zone.environment.name_servers.3}"
-}
+#output "customer nameservers" {
+#    value = "${aws_route53_zone.environment.name_servers.0}, ${aws_route53_zone.environment.name_servers.1}, ${aws_route53_zone.environment.name_servers.2}, ${aws_route53_zone.environment.name_servers.3}"
+#}
 
 output "load balancer members" {
     value = "${openstack_compute_instance_v2.appl1.network.0.fixed_ip_v4}"

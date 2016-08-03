@@ -16,6 +16,9 @@ variable "domain_base" {
 variable "ext_lb_name" {
     default = "www"
 }
+variable "aws_zone_id" {
+   default = "Z3SLZMRUV9F993"
+}
 
 # specify AWS credentials as 'export TF_VAR_aws_access_key=<accesskey>; export TF_VAR_aws_secret_key=<secretkey>'
 variable "aws_access_key" {}
@@ -74,7 +77,7 @@ variable "db1_hostname" {
     default = "db1"
 }
 variable "monitor1_hostname" {
-    default = "db1"
+    default = "monitor1"
 }
 variable "jump1_hostname" {
     default = "jumphost"
@@ -176,15 +179,15 @@ variable "image_win" {
 }
 
 variable "flavor_appl" {
-    default = "ha_localdisk.1c.1r.20h"
+    default = "ha_localdisk.2c.4r.20h"
 }
 
 variable "flavor_db" {
-    default = "ha_localdisk.1c.1r.20h"
+    default = "ha_localdisk.4c.16r.60h"
 }
 
 variable "flavor_mon" {
-    default = "ha_localdisk.2c.4r.60h"
+    default = "ha_localdisk.2c.4r.20h"
 }
 
 variable "flavor_win" {
