@@ -57,6 +57,23 @@ variable "monitor_storage" {
     default = "/dev/vdb"
 }
 
+############### User definitions ###############
+variable "lb_username" {
+    default = "ubuntu"
+}
+variable "mon_username" {
+    default = "ubuntu"
+}
+variable "jump_username" {
+    default = "ubuntu"
+}
+variable "appl_username" {
+    default = "debian"
+}
+variable "db_username" {
+    default = "debian"
+}
+
 ############### Hostnames ###############
 variable "appl1_hostname" {
     default = "appl1"

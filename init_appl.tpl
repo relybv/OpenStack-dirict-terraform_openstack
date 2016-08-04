@@ -1,9 +1,14 @@
 #!/bin/bash
 echo "Start of boot script"
 
+export FACTER_monitor_address="${monitor_address}"
+echo "Monitor server is: $FACTER_monitor_address"
+export FACTER_nfs_address="${nfs_address}"
+echo "NFS mount server is: $FACTER_nfs_address"
 export FACTER_db_address="${db_address}"
 echo "Database server is: $FACTER_db_address"
-
+export FACTER_win_address="${win_address}"
+echo "Windows server is: $FACTER_win_address"
 export FACTER_ext_lb_fqdn="${ext_lb_fqdn}"
 echo "External load balancer fqdn is: $FACTER_ext_lb_fqdn"
 

@@ -42,16 +42,6 @@ resource "openstack_networking_subnet_v2" "backend" {
   dns_nameservers = ["8.8.8.8","8.8.4.4"]
 }
 
-#resource "openstack_networking_subnet_v2" "jump" {
-#  name = "jump_${var.customer}_${var.environment}"
-#  region = "${var.region}"
-#  network_id = "${openstack_networking_network_v2.jump.id}"
-#  cidr = "${var.secgroup_jump_cidr}"
-#  ip_version = 4
-#  enable_dhcp = "true"
-#  dns_nameservers = ["8.8.8.8","8.8.4.4"]
-#}
-
 #
 # Router definitions
 #
@@ -76,9 +66,3 @@ resource "openstack_networking_router_interface_v2" "backend" {
   router_id = "${openstack_networking_router_v2.terraform.id}"
   subnet_id = "${openstack_networking_subnet_v2.backend.id}"
 }
-
-#resource "openstack_networking_router_interface_v2" "jump" {
-#  region = "${var.region}"
-#  router_id = "${openstack_networking_router_v2.terraform.id}"
-#  subnet_id = "${openstack_networking_subnet_v2.jump.id}"
-#}

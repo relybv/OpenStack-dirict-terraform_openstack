@@ -18,9 +18,10 @@ resource "template_file" "init_lb" {
 resource "template_file" "init_appl" {
     template = "${file("init_appl.tpl")}"
     vars {
-        monitor_address = "${openstack_compute_instance_v2.monitor1.network.0.fixed_ip_v4}"
-        nfs_address = "${openstack_compute_instance_v2.db1.network.0.fixed_ip_v4}"
-        db_address = "${openstack_compute_instance_v2.db1.network.0.fixed_ip_v4}"
+        monitor_address = "${var.monitor1_ip_address}"
+        nfs_address = "${var.db1_ip_address}"
+        db_address = "${var.db1_ip_address}"
+        win_address = "${var.win1_ip_address}"
         ext_lb_fqdn = "${concat(var.ext_lb_name,".",var.environment,".",var.customer,".",var.domain_base)}"
     }
 }
@@ -49,6 +50,6 @@ resource "template_file" "init_jump" {
 resource "template_file" "init_win" {
     template = "${file("init_win.tpl")}"
     vars {
-        monitor_address = "${openstack_compute_instance_v2.monitor1.network.0.fixed_ip_v4}"
+        monitor_address = "${var.monitor1_ip_address}"
     }
 }

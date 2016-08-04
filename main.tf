@@ -13,7 +13,7 @@ provider "openstack" {
 # Keypair
 #
 resource "openstack_compute_keypair_v2" "terraform" {
-  name = "SSH keypair for Terraform instances Customer ${var.customer} Environment ${var.environment}"
+  name = "SSH keypair for Customer ${var.customer} Environment ${var.environment}"
   region = "${var.region}"
   public_key = "${file("${var.ssh_key_file}.pub")}"
 }

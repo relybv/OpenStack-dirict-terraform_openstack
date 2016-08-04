@@ -39,6 +39,12 @@ resource "openstack_compute_secgroup_v2" "frontnet" {
     cidr = "${var.secgroup_back_cidr}"
   }
   rule {
+    from_port = 1
+    to_port = 65535
+    ip_protocol = "udp"
+    cidr = "${var.secgroup_back_cidr}"
+  }
+  rule {
       from_port = 1
       to_port = 65535
       ip_protocol = "tcp"
@@ -60,6 +66,12 @@ resource "openstack_compute_secgroup_v2" "backnet" {
     from_port = 1
     to_port = 65535
     ip_protocol = "tcp"
+    cidr = "${var.secgroup_front_cidr}"
+  }
+  rule {
+    from_port = 1
+    to_port = 65535
+    ip_protocol = "udp"
     cidr = "${var.secgroup_front_cidr}"
   }
   rule {
@@ -160,34 +172,3 @@ resource "openstack_compute_secgroup_v2" "monitor" {
     cidr = "0.0.0.0/0"
   }
 }
-
-#resource "openstack_compute_secgroup_v2" "jump" {
-#  name = "terraform_${var.customer}_${var.environment}_jump"
-#  region = "${var.region}"
-#  description = "Security group for the jumphost"
-#
-#  rule {
-#    from_port = 22
-#    to_port = 22
-#    ip_protocol = "tcp"
-#    cidr = "0.0.0.0/0"
-#  }
-#  rule {
-#    from_port = 1
-#    to_port = 65535
-#    ip_protocol = "tcp"
-#    cidr = "${var.secgroup_front_cidr}"
-#  }
-#  rule {
-#      from_port = 1
-#      to_port = 65535
-#      ip_protocol = "tcp"
-#      cidr = "${var.secgroup_back_cidr}"
-#  }
-#  rule {
-#      from_port = 1
-#      to_port = 65535
-#      ip_protocol = "tcp"
-#      cidr = "0.0.0.0/0"
-#  }
-#}

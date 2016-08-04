@@ -87,21 +87,6 @@ resource "openstack_compute_instance_v2" "monitor1" {
   }
 }
 
-#resource "openstack_compute_instance_v2" "jump" {
-#  name = "${var.customer}-${var.environment}-${var.jump1_hostname}"
-#  region = "${var.region}"
-#  image_name = "${var.image_ub}"
-#  flavor_name = "${var.flavor_jump}"
-#  key_pair = "${openstack_compute_keypair_v2.terraform.name}"
-#  security_groups = [ "${openstack_compute_secgroup_v2.jump.name}" ]
-#  floating_ip = "${openstack_compute_floatingip_v2.jump.address}"
-#  user_data = "${template_file.init_jump.rendered}"
-#  network {
-#    uuid = "${openstack_networking_network_v2.jump.id}"
-#    fixed_ip_v4 = "${var.jump_ip_address}"
-#  }
-#}
-
 resource "openstack_compute_instance_v2" "win1" {
   name = "${var.customer}-${var.environment}-${var.win1_hostname}"
   region = "${var.region}"

@@ -1,31 +1,45 @@
-output "customer" {
+output "1a. DirICT configuratie overzicht" {
+  value = "Versie 1.0"
+}
+output "1b. Klantnaam" {
     value = "${var.customer}"
 }
-
-output "customer environment" {
+output "1c. Omgevingsnaam" {
     value = "${var.environment}"
 }
-
-output "customer fqdn" {
-    value = "${concat(var.ext_lb_name,".",var.environment,".",var.customer,".",var.domain_base)}"
+output "2a. Load balancer naam" {
+    value = "http://${concat(var.ext_lb_name,".",var.environment,".",var.customer,".",var.domain_base)}"
 }
-
-#output "customer nameservers" {
-#    value = "${aws_route53_zone.environment.name_servers.0}, ${aws_route53_zone.environment.name_servers.1}, ${aws_route53_zone.environment.name_servers.2}, ${aws_route53_zone.environment.name_servers.3}"
-#}
-
-output "load balancer members" {
-    value = "${openstack_compute_instance_v2.appl1.network.0.fixed_ip_v4}"
-}
-
-output "load balancer public address" {
+output "2b. Load balancer publiek IP" {
     value = "${openstack_compute_floatingip_v2.lb.address}"
 }
-
-output "application servers https working test" {
-    value = "https://${openstack_compute_floatingip_v2.lb.address}/working.html"
-}
-
-output "Jump host public address" {
+output "3a. Jump host publiek IP" {
     value = "${openstack_compute_floatingip_v2.jump.address}"
+}
+output "4a. SSH connect string appl1 server" {
+    value = "ssh -i ${var.ssh_key_file} ${var.appl_username}@${var.appl1_ip_address} -o 'ProxyCommand ssh -A -i ${var.ssh_key_file} ${var.jump_username}@${openstack_compute_floatingip_v2.jump.address} -W ${var.appl1_ip_address}:22' "
+}
+output "4b. SSH connect string appl2 server" {
+    value = "ssh -i ${var.ssh_key_file} ${var.appl_username}@${var.appl2_ip_address} -o 'ProxyCommand ssh -A -i ${var.ssh_key_file} ${var.jump_username}@${openstack_compute_floatingip_v2.jump.address} -W ${var.appl2_ip_address}:22' "
+}
+output "4c. SSH connect string db server" {
+    value = "ssh -i ${var.ssh_key_file} ${var.db_username}@${var.db1_ip_address} -o 'ProxyCommand ssh -A -i ${var.ssh_key_file} ${var.jump_username}@${openstack_compute_floatingip_v2.jump.address} -W ${var.db1_ip_address}:22' "
+}
+output "4d. SSH connect string monitor server" {
+    value = "ssh -i ${var.ssh_key_file} ${var.mon_username}@${var.monitor1_ip_address} -o 'ProxyCommand ssh -A -i ${var.ssh_key_file} ${var.jump_username}@${openstack_compute_floatingip_v2.jump.address} -W ${var.monitor1_ip_address}:22' "
+}
+output "5a. Appl1 server intern adres" {
+    value = "${var.appl1_ip_address}"
+}
+output "5b. Appl2 server intern adres" {
+    value = "${var.appl2_ip_address}"
+}
+output "5c. DB server intern adres" {
+    value = "${var.db1_ip_address}"
+}
+output "5d. Monitor server intern adres" {
+    value = "${var.monitor1_ip_address}"
+}
+output "5e. Windows server intern adres" {
+    value = "${var.win1_ip_address}"
 }
