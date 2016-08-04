@@ -37,10 +37,10 @@ variable "ssh_key_file" {
 
 # Variables for terraform remote state
 variable "swift_bucket_name" {
-    default = "terraform-state-backend"
+    default = "terraform-state-dirict-acc"
 }
 variable "swift_key" {
-    default = "/terraform.tfstate"
+    default = "/tfpatrick.tfstate"
 }
 variable "swift_region" {
     default = "eu-central-1"
