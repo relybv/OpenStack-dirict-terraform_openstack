@@ -1,5 +1,7 @@
 #!/bin/bash
 export FACTER_monitor_address="${monitor_address}"
+export FACTER_db_export_net="${db_export_net}"
+
 echo "Create hiera directories"
 mkdir -p /etc/puppetlabs/puppet
 mkdir -p /etc/puppetlabs/code/environments/production/hieradata

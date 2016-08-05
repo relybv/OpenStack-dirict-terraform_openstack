@@ -8,7 +8,7 @@ output "1c. Omgevingsnaam" {
     value = "${var.environment}"
 }
 output "2a. Load balancer naam" {
-    value = "http://${concat(var.ext_lb_name,".",var.environment,".",var.customer,".",var.domain_base)}"
+    value = "http://${var.ext_lb_name}.${var.environment}.${var.customer}.${var.domain_base}"
 }
 output "2b. Load balancer publiek IP" {
     value = "${openstack_compute_floatingip_v2.lb.address}"

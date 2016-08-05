@@ -37,10 +37,10 @@ variable "ssh_key_file" {
 
 # Variables for terraform remote state
 variable "swift_bucket_name" {
-    default = "terraform-state-dirict-acc"
+    default = "terraform-state-backend"
 }
 variable "swift_key" {
-    default = "/tfpatrick.tfstate"
+    default = "/tfpat4.tfstate"
 }
 variable "swift_region" {
     default = "eu-central-1"
@@ -104,6 +104,9 @@ variable "win1_hostname" {
 }
 ############### Fixed IP addresses ###############
 
+variable "main_subnet" {
+    default = "172.18.0.0/16"
+}
 variable "main_net" {
     default = "172.18"
 }
@@ -161,8 +164,46 @@ variable "es_vol_gb" {
     default = 10
 }
 
+############### NFS mount points appl ###############
+variable "appl_error_mount" {
+    default = "/mnt/nfs/errors"
+}
+variable "appl_config_mount" {
+    default = "/mnt/nfs/config"
+}
+variable "appl_template_mount" {
+    default = "/mnt/nfs/office-templates"
+}
+variable "appl_log_mount" {
+    default = "/mnt/nfs/logs"
+}
 
-############### leave unchanged for naturalis openstack ###################
+############### NFS exports points db ###############
+variable "db_error_export" {
+    default = "/mnt/nfs/errors"
+}
+variable "db_config_export" {
+    default = "/mnt/nfs/config"
+}
+variable "db_template_export" {
+    default = "/mnt/nfs/office-templates"
+}
+variable "db_log_export" {
+    default = "/mnt/nfs/logs"
+}
+
+############### adjust as needed ###############
+variable "db_vol_gb" {
+    default = 10
+}
+variable "nfs_vol_gb" {
+    default = 10
+}
+variable "es_vol_gb" {
+    default = 10
+}
+
+############### Environment settings for Rely_openstack DirICT ###################
 variable "tenant_name" {
     default = "dirict-acc"
 }

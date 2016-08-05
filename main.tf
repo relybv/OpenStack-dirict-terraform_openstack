@@ -27,7 +27,7 @@ provider "aws" {
     secret_key = "${var.aws_secret_key}"
     region = "eu-central-1"
 }
-
+/*
 # Terraform.state stored on AWS S3
 resource "terraform_remote_state" "aws" {
     backend = "s3"
@@ -39,3 +39,4 @@ resource "terraform_remote_state" "aws" {
         secret_key = "${var.aws_secret_key}"
     }
 }
+*/

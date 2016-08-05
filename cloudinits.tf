@@ -22,7 +22,7 @@ resource "template_file" "init_appl" {
         nfs_address = "${var.db1_ip_address}"
         db_address = "${var.db1_ip_address}"
         win_address = "${var.win1_ip_address}"
-        ext_lb_fqdn = "${concat(var.ext_lb_name,".",var.environment,".",var.customer,".",var.domain_base)}"
+        ext_lb_fqdn = "${var.lb1_hostname}.${var.environment}.${var.customer}.${var.domain_base}"
     }
 }
 
@@ -31,6 +31,7 @@ resource "template_file" "init_db" {
     template = "${file("init_db.tpl")}"
     vars {
         monitor_address = "${var.monitor1_ip_address}"
+        db_export_net = "${var.main_subnet}"
     }
 }
 
