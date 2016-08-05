@@ -135,7 +135,7 @@ variable "appl3_ip_address" {
     default = "172.18.10.103"
 }
 variable "appl4_ip_address" {
-    default = "$172.18.10.104"
+    default = "172.18.10.104"
 }
 variable "win1_ip_address" {
     default = "172.18.20.50"
